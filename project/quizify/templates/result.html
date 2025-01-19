@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+
+{% block navbar %}
+
+    <nav class="navbar" style="background: #31323e;">
+      <div class="navbar-title" style="margin-left: 20px; margin-right: 30px; color: #bfc0d1;"><h2>Result</h2></div>
+      
+      </div>
+    </nav>
+    {% endblock %}
+
+{% block content %}
+
+
+
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;  flex-direction: column;">
+  <h1>Your score is {{score}}</h1>
+  
+  <a class="fancy" href="{% url "home"%}">
+    <span class="top-key"></span>
+    <span class="text">Go back</span>
+    <span class="bottom-key-1"></span>
+    <span class="bottom-key-2"></span>
+  </a>
+</div>
+
+{% endblock %}

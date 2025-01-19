@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block navbar %}
+
+    <nav class="navbar" style="background: #31323e;">
+      <div class="navbar-title" style="margin-left: 20px; margin-right: 30px; color: #bfc0d1;"><h2>{{event.eventName}}</h2></div>
+      
+      </div>
+    </nav>
+    {% endblock %}
+
+{%block content %} 
+
+<div class="page-wrapper">
+
+<div class="content2">
+
+
+
+{% if questions %}
+<form method="post">
+  {% csrf_token %} 
+  {% for field in form %}
+                <div class="questionCard">
+                    <div class="question">
+                        {{ field.label }}
+                    </div>
+                    <div class="options">
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+
+            <button class="fancy" type="submit" style="margin-top: 20px; margin-bottom: 20px;">
+              <span class="top-key"></span>
+              <span class="text">Submit</span>
+              <span class="bottom-key-1"></span>
+              <span class="bottom-key-2"></span>
+          </button>
+            
+          
+</form>
+
+</div></div>
+{% else %}
+
+<h2>Quiz not started yet.</h2>
+
+{% endif %} 
+{% endblock %}
+
+
+

@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        padding-top: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      .centered-div {
+        border: 1px solid #ddd;
+        border-radius: 0px;
+      } 
+      /* Navbar */
+      .navbar {
+        width: 100%;
+        height: 80px;
+        background-color: #333;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        position: fixed;
+        top: 0;
+        z-index: 1000; /* Keep navbar on top */
+      }
+      
+      /* Content */
+      .content, .content2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;  /* Make sure the content starts from the top */
+        margin-top: 10px;  
+        gap: 20px; 
+        width: 100%;  /* Ensure content takes up full width */
+        min-height: 100vh;  /* Ensure content height is at least full screen */
+      }
+
+      .page-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      
+
+    
+
+  .questionCard {
+  
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    
+    }
+
+   .question {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    } 
+      
+    </style>
+    <title>{% block title %} Quizify {% endblock %}</title>
+
+
+  </head>
+  <body style="background: #1e202c;">
+
+    {% block navbar %}
+
+    <nav class="navbar" style="background: #31323e;">
+      <div class="navbar-title" style="margin-left: 20px; margin-right: 30px; color: #bfc0d1;"><h2>Quizify</h2></div>
+      <div class="navbar-buttons" style="margin-left: 20px; margin-right: 30px;">
+        {% if user.is_authenticated %}
+      <form method="post" action="{% url "logout" %}">
+        {% csrf_token %}
+        
+        
+        <button class="logout-btn" type="submit" href="{% url "login" %}">
+
+          
+         
+            <span class="top-key"></span>
+            <span class="text">Logout</span>
+            <span class="bottom-key-1"></span>
+            <span class="bottom-key-2"></span>
+          
+        </button>
+      </form>
+      {% else %}
+      <a class="login-btn" href="{% url "login"%}" >
+        <span class="top-key"></span>
+        <span class="text">Login</span>
+        <span class="bottom-key-1"></span>
+        <span class="bottom-key-2"></span>
+      </a>
+      <a class="register-btn" href="{% url "register"%}" style="margin-right: 30px;">
+        <span class="top-key"></span>
+        <span class="text">Register</span>
+        <span class="bottom-key-1"></span>
+        <span class="bottom-key-2"></span>
+      </a>
+      {% endif %}
+      </div>
+    </nav>
+    {% endblock %}
+    
+
+
+
+  <div class="page-wrapper">
+
+    {% block content %}Quizify App{% endblock %}
+
+  </div>
+      
+    
+  </body>
+</html>
